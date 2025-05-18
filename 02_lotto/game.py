@@ -1,46 +1,14 @@
-from random import randint
+from lotto_bag import LottoBag
+from lotto_card import LottoCard
 
-class LottoBag:
-    """Класс для создания мешка с бочонками"""
-    def __init__(self):
-        self.__kegs = []
-        while len(self.__kegs) < 90:
-            new_keg = randint(1, 90)
-            if new_keg not in self.__kegs:
-                self.__kegs.append(new_keg)
-
-    @property
-    def kegs(self):
-        """Свойство, чтобы посмотреть все оставшиеся в мешке бочонки в виде списка"""
-        return self.__kegs
-
-class LottoCard:
-    """Класс для создания карточек с числами для игрока и компьютера"""
-    def __init__(self):
-        self.__numbers = []
-        while len(self.__numbers) < 15:
-            new_number = randint(1, 90)
-            if new_number not in self.__numbers:
-                self.__numbers.append(new_number)
-
-    @property
-    def numbers(self):
-        """Свойство, чтобы выводить числа на карточке в виде списка"""
-        return self.__numbers
-
-    def __str__(self):
-        """Метод для красивого вывода карточки"""
-        return ' '.join([str(x) if x != '-' else ' - ' for x in self.__numbers])
-
-    def cross_a_number(self, number):
-        if number in self.__numbers:
-            index = self.__numbers.index(number)
-            self.__numbers[index] = "-"
-
-    def numbers_finished(self) -> bool:
-        return all(num == "-" for num in self.__numbers)
 
 class Game:
+    """Это функция 1) создает карточки игрока и компьютера,
+    2) создает мешок с 90 бочонками,
+    3) запускает игру,
+    4) проверяет, правильно ли действует игрок,
+    5) завершает игру в случае поражения или победы игрока
+    """
     __player_card = None
     __computer_card = None
     __kegs = []
@@ -49,7 +17,6 @@ class Game:
         self.__player_card = LottoCard()
         self.__computer_card = LottoCard()
         self.__kegs = LottoBag().kegs
-
 
     def play_round(self) -> int:
         """0 - игра продолжается
@@ -89,3 +56,6 @@ if __name__ == '__main__':
         elif score == 2:
             print('Вы проиграли')
             break
+
+
+
