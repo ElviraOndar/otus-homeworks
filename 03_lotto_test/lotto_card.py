@@ -33,4 +33,4 @@ class LottoCard:
 if __name__ == '__main__':
     # Тестирование класса LottoCard (не будет выполнено при импорте)
     card = LottoCard()
-    print(card)
+    print(card.numbers)
