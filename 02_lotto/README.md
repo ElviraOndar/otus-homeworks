@@ -22,11 +22,11 @@
 2. Склонируйте репозиторий: git clone https://github.com/ElviraOndar/otus-homeworks.git
 3. Перейдите в каталог проекта: cd otus-homeworks/02_lotto
 4. Установите зависимости (если есть) или создайте виртуальное окружение:
-
+```
 python -m venv venv
 source venv/bin/activate  # Для macOS/Linux
 .\venv\Scripts\activate   # Для Windows
-
+```
 5. Запустите игру: python game.py
 
 ## Использование
