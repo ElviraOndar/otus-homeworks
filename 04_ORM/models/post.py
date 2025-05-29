@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text, Table
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text
 from db.session import base
 from sqlalchemy.orm import relationship
 from models.associations import post_tags

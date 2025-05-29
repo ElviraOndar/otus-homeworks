@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from config import DATABASE_URL
 
 # Движок
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL)
 
 # Базовый класс
 base = declarative_base()

@@ -1,5 +1,5 @@
 from sqlalchemy import Table, Column, Integer, ForeignKey
-from db.session import base  # импортируй свой declarative_base()
+from db.session import base
 
 post_tags = Table(
     'post_tags',
