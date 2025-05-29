@@ -15,6 +15,6 @@ class Post(base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     user = relationship('User', back_populates='posts')
 
-    #Связь поста с тегами
+    # Связь поста с тегами
     tags = relationship('Tag', secondary=post_tags, back_populates='posts')
 
