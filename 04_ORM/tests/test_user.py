@@ -34,3 +34,4 @@ def test_user_posts_relationship(session):
     assert retrieved_user.posts[1].title == 'Title 2'
 
 
+
