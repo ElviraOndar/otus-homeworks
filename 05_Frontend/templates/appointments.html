@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости о "Реале"</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #00529b;
+        }
+        h1 {
+            color: #00529b;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+.post {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-title {
+            color: #00529b;
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .post-meta {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .post-meta::before {
+            content: "📅";
+            margin-right: 5px;
+        }
+
+        .post-content {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .tags {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #00529b;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .tag-interview { background: #4CAF50; }
+        .tag-appointment { background: #2196F3; }
+        .tag-reward { background: #FF9800; }
+        .tag-news { background: #9C27B0; }
+        .tag-anniversary { background: #F44336; }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Назначения внутри клуба "Реал Мадрид"</h1>
+    </header>
+
+    <main>
+        <article class="post">
+            <h3 class="post-title">Хаби Алонсо — новый главный тренер "Реал Мадрид"</h3>
+            <p class="post-meta">
+                Опубликовано 25.05.2025 в 13:00
+            </p>
+            <div class="post-content">
+                <p>
+                    Хаби Алонсо подпишет контракт с «Мадридом» сроком до 2028 года.
+                </p>
+            </div>
+            <div class="tags">
+                <a href="">
+                <span class="tag tag-appointment">назначение</span>
+                    </a>
+                <a href="">
+                <span class="tag tag-news">новости</span>
+                    </a>
+            </div>
+        </article>
+    </main>
