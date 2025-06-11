@@ -1,186 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <title>Новости о "Реале"</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #00529b;
-        }
-        h1 {
-            color: #00529b;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-        }
-
-.post {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .post-title {
-            color: #00529b;
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .post-meta {
-            color: #666;
-            font-style: italic;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .post-meta::before {
-            content: "📅";
-            margin-right: 5px;
-        }
-
-        .post-content {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .tags {
-            margin-top: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #00529b;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .tag-interview { background: #4CAF50; }
-        .tag-appointment { background: #2196F3; }
-        .tag-reward { background: #FF9800; }
-        .tag-news { background: #9C27B0; }
-        .tag-anniversary { background: #F44336; }
-
-        /* Стили для навигационного меню */
-    nav {
-        margin: 25px 0 40px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        padding: 15px 0;
-    }
-
-    nav ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 0;
-        padding: 0;
-    }
-
-    nav li {
-        position: relative;
-    }
-
-    nav a {
-        display: block;
-        padding: 10px 20px;
-        color: #00529b;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95em;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-radius: 30px;
-        transition: all 0.3s ease;
-        background: rgba(0, 82, 155, 0.1);
-    }
-
-    nav a:hover {
-        background: #00529b;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 82, 155, 0.2);
-    }
-
-    nav a:active {
-        transform: translateY(0);
-    }
-
-    /* Стили для активной ссылки (можно добавить класс .active) */
-    nav a.active {
-        background: #00529b;
-        color: white;
-    }
-
-    /* Адаптация для мобильных */
-    @media (max-width: 600px) {
-        nav ul {
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        nav a {
-            padding: 8px 15px;
-            font-size: 0.85em;
-        }
-    }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #666;
-            font-size: 0.9em;
-        }
-    </style>
-
+    <link rel="stylesheet" href="css/style-main.css">
 </head>
+
 <body>
+
     <header>
         <h1>Главные новости футбольного клуба "Реал Мадрид"</h1>
         <p>Актуальные события и последние новости о "Королевском клубе"</p>
 
         <nav>
             <ul>
-                <li><a href="news.html"></a>Новостные заметки</li>
-                <li><a href="interviews.html"></a>Интервью</li>
-                <li><a href="rewards.html"></a>Достижения</li>
-                <li><a href="appointments.html"></a>Назначения</li>
-                <li><a href="anniversaries.html"></a>Памятные даты</li>
+                <li><a href="news.html">Новостные заметки</a></li>
+                <li><a href="interviews.html">Интервью</a></li>
+                <li><a href="rewards.html">Достижения</a></li>
+                <li><a href="appointments.html">Назначения</a></li>
+                <li><a href="anniversaries.html">Памятные даты</a></li>
             </ul>
         </nav>
     </header>
@@ -198,6 +37,9 @@
                 Я здесь, чтобы выигрывать титулы. Я хочу выиграть всё. У меня есть амбиции.
                 Несколько игроков «Мадрида» уже написали мне, это хорошая команда с отличными людьми.
                 Не могу дождаться встречи с ними".
+                </p>
+                <p>
+                    <a href="din_interview.html">Подробнее</a>
                 </p>
             </div>
             <div class="tags">
@@ -221,7 +63,7 @@
             </div>
             <div class="tags">
                 <a href="">
-                <span class="tag tag-anniversary">праздничная дата</span>
+                <span class="tag tag-anniversary">памятная дата</span>
                     </a>
             </div>
         </article>
@@ -294,6 +136,10 @@
         <p>
             2025. Новостной блог о футбольном клубе "Реал Мадрид". Все права защищены.
         </p>
+        <p>
+            <a href="contacts.html">Наши контакты</a>
+            </p>
+
     </footer>
 
 </body>
