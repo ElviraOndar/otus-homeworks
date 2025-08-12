@@ -6,9 +6,9 @@ from config import DATABASE_URL
 engine = create_engine(DATABASE_URL)
 
 # Базовый класс
-base = declarative_base()
+Base = declarative_base()
 
 # Фабрика сессий
-Session = sessionmaker(bind=engine)
+SessionLocal = sessionmaker(bind=engine)
 
 

@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text
-from db.session import base
+from db.session import Base
 from sqlalchemy.orm import relationship
 from models.associations import post_tags
 
 
-class Post(base):
+class Post(Base):
     __tablename__ = 'posts'
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String, nullable=False, unique=True)

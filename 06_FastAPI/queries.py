@@ -1,11 +1,11 @@
 from typing import Optional, List
-from db.session import Session
+from db.session import SessionLocal
 from models.tag import Tag
 from models.user import User
 from models.post import Post
 
 
-def get_user_posts(session: Session, name: Optional[str] = None, user_id: Optional[int] = None) -> List[Post]:
+def get_user_posts(session: SessionLocal, name: Optional[str] = None, user_id: Optional[int] = None) -> List[Post]:
     """
     Эта функция возвращает список постов пользователя по его имени или id.
     Если пользователь не найден, то возвращает пустой список.
@@ -25,7 +25,7 @@ def get_user_posts(session: Session, name: Optional[str] = None, user_id: Option
 
 if __name__ == '__main__':
     # Получаем все посты от пользователя Carlo Ancelotti по его имени
-    with Session() as session:
+    with SessionLocal() as session:
         posts = get_user_posts(session, name='Carlo Ancelotti')
         print('Carlo Ancelotti posts:', len(posts))
         for post in posts:

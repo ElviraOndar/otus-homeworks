@@ -1,9 +1,9 @@
 from sqlalchemy import Table, Column, Integer, ForeignKey
-from db.session import base
+from db.session import Base
 
 post_tags = Table(
     'post_tags',
-    base.metadata,
+    Base.metadata,
     Column('post_id', Integer, ForeignKey('posts.id'), primary_key=True),
     Column('tag_id', Integer, ForeignKey('tags.id'), primary_key=True)
 )

@@ -1,11 +1,11 @@
-from db.session import Session
+from db.session import SessionLocal
 from models.post import Post
 from models.user import User
 from models.tag import Tag
 from datetime import datetime
 
 
-session = Session()
+session = SessionLocal()
 
 # Создаем двух пользователей
 user1 = User(name='Carlo Ancelotti')
