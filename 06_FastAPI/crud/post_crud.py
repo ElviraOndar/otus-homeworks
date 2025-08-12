@@ -4,18 +4,17 @@ from models.tag import Tag
 from schemas.post_schema import PostCreate
 
 
-def create_post(db: Session, post_in: PostCreate):
+def create_post(db: Session, post: PostCreate):
     new_post = Post(
-        title=post_in.title,
-        content=post_in.content,
-        datetime=post_in.datetime,
-        user_id=post_in.user_id
+        title=post.title,
+        content=post.content,
+        DateTime=post.DateTime,
+        user_id=post.user_id
     )
 
-    # Привязываем теги по id
-    if post_in.tags:
-        tags = db.query(Tag).filter(Tag.id.in_(post_in.tags)).all()
-        new_post.tags = tags
+    # Находим теги по id
+    tags = db.query(Tag).filter(Tag.id.in_(post.tags)).all()
+    new_post.tags = tags
 
     db.add(new_post)
     db.commit()
@@ -26,7 +25,12 @@ def create_post(db: Session, post_in: PostCreate):
 def get_post(db: Session, post_id: int):
     return (
         db.query(Post)
-        .options(joinedload(Post.user), joinedload(Post.tags))
+        .options(
+            joinedload(Post.user),
+            joinedload(Post.tags)
+        )
         .filter(Post.id == post_id)
         .first()
     )
+
+# Создать delete post и udpate post, а также создать эти функции для tag и user
