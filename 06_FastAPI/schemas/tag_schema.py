@@ -18,7 +18,7 @@ class TagCreate(TagBase):
 # Схема для чтения тега по запросу
 class TagRead(TagBase):
     """Эта Pydantic-схема валидирует данные, которые будут отправлены клиенту о запрошенном теге.
-        Наследуется от TagBase и добавляет поле id -- ID тега"""
+        Наследуется от TagBase и добавляет поле id - ID тега"""
     id: int
 
     class Config:
