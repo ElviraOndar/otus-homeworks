@@ -11,7 +11,7 @@ router = APIRouter(prefix="/posts", tags=["Posts"])
 @router.post("/", response_model=PostRead)
 def create_post_endpoint(post: PostCreate, db: Session = Depends(get_db)):
     """
-    Эта функция обрабатывает POST-запрос на префикс /posts, когда клиент хочет добавить новый пост.
+    Эта функция обрабатывает POST-запрос, когда клиент хочет добавить новый пост.
 
     Данная функция:
     1) принимает post (PostCreate) - Pydantic-схему с данными нового поста,

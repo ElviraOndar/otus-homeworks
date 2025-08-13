@@ -21,7 +21,7 @@ def create_post(db: Session, post: PostCreate):
     new_post = Post(
         title=post.title,
         content=post.content,
-        DateTime=post.DateTime,
+        datetime=post.datetime,
         user_id=post.user_id
     )
 

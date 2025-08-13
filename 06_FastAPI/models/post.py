@@ -9,7 +9,7 @@ class Post(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String, nullable=False, unique=True)
     content = Column(Text, nullable=False)
-    DateTime = Column(DateTime, nullable=False)
+    datetime = Column(DateTime, nullable=False)
 
     # Связь с пользователем, написавшим пост
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)

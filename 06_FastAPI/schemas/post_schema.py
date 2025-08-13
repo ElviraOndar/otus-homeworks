@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import List
 from pydantic import BaseModel
-from user_schema import UserRead  # объект автора поста
-from tag_schema import TagRead  # объект тегов поста
+from .user_schema import UserRead  # объект автора поста
+from .tag_schema import TagRead  # объект тегов поста
 
 
 # ===== Базовая схема поста =====
