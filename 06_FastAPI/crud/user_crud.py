@@ -8,7 +8,7 @@ def create_user(db: Session, user: UserCreate) -> User:
     Эта функция создает нового пользователя в базе данных.
     Она принимает:
     1) db (Session) - активная сессия SQLAlchemy,
-    2) user (UserCreate) - Pydantic-схема с данными для нового пользователя.
+    2) user (UserCreate) - Pydantic-схема с данными для нового пользователя - его именем.
 
     Затем функция:
     1) создает новый ORM-объект User с именем, которое ввел клиент через Pydantic-схему.

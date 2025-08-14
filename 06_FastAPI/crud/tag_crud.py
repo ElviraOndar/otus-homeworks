@@ -47,13 +47,13 @@ def update_tag(db: Session, tag_id: int, new_tag: TagCreate) -> Tag | None:
 
     Функция возвращает обновленный ORM-объект тега или None, если тег не был найден.
     """
-    db_tag = db.query(Tag).filter(Tag.id == tag_id).first()
-    if db_tag is None:
+    tag = db.query(Tag).filter(Tag.id == tag_id).first()
+    if tag is None:
         return None
-    db_tag.name = new_tag.name
+    tag.name = new_tag.name
     db.commit()
-    db.refresh(db_tag)
-    return db_tag
+    db.refresh(tag)
+    return tag
 
 
 def delete_tag(db: Session, tag_id: int) -> bool:
