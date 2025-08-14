@@ -66,6 +66,27 @@ def get_post(db: Session, post_id: int):
     )
 
 
+def get_posts(db: Session, skip: int = 0, limit: int = 100):
+    """
+    Эта функция получает список постов из базы данных с подгрузкой автора и тегов.
+    Она принимает:
+    - skip (int) — сколько записей пропустить,
+    - limit (int) — сколько постов вернуть.
+
+    Возвращает список ORM-объектов Post. В роутере мы преобразуем их в Pydantic-схему PostRead для возврата клиенту.
+    """
+    return (
+        db.query(Post)
+        .options(
+            joinedload(Post.user),   # сразу подгружаем автора
+            joinedload(Post.tags)    # сразу подгружаем теги
+        )
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
+
+
 def update_post(db: Session, post_id: int, post_data: PostCreate):
     """
     Эта функция обновляет существующий пост в базе данных по его ID.

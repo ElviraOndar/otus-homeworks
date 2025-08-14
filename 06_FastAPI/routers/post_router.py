@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db.session import get_db
 from schemas.post_schema import PostCreate, PostRead
-from crud.post_crud import create_post, get_post, update_post, delete_post
+from crud.post_crud import create_post, get_post, get_posts, update_post, delete_post
 from models.tag import Tag
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
@@ -45,6 +45,20 @@ def get_post_endpoint(post_id: int, db: Session = Depends(get_db)):
     if not db_post:
         raise HTTPException(status_code=404, detail="Пост не найден")
     return db_post
+
+
+@router.get("/", response_model=list[PostRead])
+def get_posts_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """
+    Эта функция обрабатывает GET-запрос: получить список постов.
+
+    - skip: сколько записей пропустить (по умолчанию 0).
+    - limit: максимальное количество записей (по умолчанию 100).
+
+    Она вызывает из CRUD функцию get_posts.
+
+    """
+    return get_posts(db=db, skip=skip, limit=limit)
 
 
 @router.put("/{post_id}", response_model=PostRead)
