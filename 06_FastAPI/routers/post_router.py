@@ -77,11 +77,11 @@ def delete_post_endpoint(post_id: int, db: Session = Depends(get_db)):
 
     1) Вызывает функцию delete_post из CRUD.
     2) Если пост не найден, вызывает 404.
-    3) Если успешно, возвращает {"ok": True}.
+    3) Если успешно, возвращает {"message": "Пост успешно удален"}.
     """
     success = delete_post(db=db, post_id=post_id)
     if not success:
         raise HTTPException(status_code=404, detail="Пост не найден")
-    return {"ok": True}
+    return {"message": "Пост успешно удален"}
 
 
