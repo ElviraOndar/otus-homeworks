@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Новости о "Реале"{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Футбольный клуб "Реал Мадрид"</h1>
+        <p>Актуальные события и новости</p>
+
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Главная</a></li>
+                <li><a href="{{ url_for('news') }}">Новостные заметки</a></li>
+                <li><a href="{{ url_for('interviews') }}">Интервью</a></li>
+                <li><a href="{{ url_for('rewards') }}">Достижения</a></li>
+                <li><a href="{{ url_for('appointments') }}">Назначения</a></li>
+                <li><a href="{{ url_for('anniversaries') }}">Памятные даты</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>2025. Новостной блог о "Реал Мадрид". Все права защищены.</p>
+    </footer>
+</body>
+</html>

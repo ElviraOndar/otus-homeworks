@@ -1,28 +1,11 @@
-from fastapi import FastAPI
-from db.session import engine, Base
-from routers import post_router, user_router, tag_router
+import uvicorn
 
-
-app = FastAPI(
-    title="Real Madrid Blog API",
-    description="API для блога про \"Реал Мадрид\"",
-    version="1.0.0"
-)
-
-# Подключаем роутеры
-app.include_router(post_router.router)
-app.include_router(tag_router.router)
-app.include_router(user_router.router)
-
-
-
-# Пример корневого эндпоинта
-@app.get("/")
-def root():
-    return {"message": "Добро пожаловать в API"}
-
-
-
-
+if __name__ == "__main__":
+    uvicorn.run(
+        "app:app",
+        host="0.0.0.0",
+        port=5000,
+        reload=True
+    )
 
 
