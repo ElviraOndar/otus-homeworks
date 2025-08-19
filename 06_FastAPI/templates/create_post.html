@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать пост</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style-main.css') }}">
+</head>
+<body>
+<header>
+    <h1>Создать новый пост</h1>
+</header>
+
+<main>
+    <form method="post" action="/posts/">
+        <label for="title">Заголовок:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="content">Содержимое:</label><br>
+        <textarea id="content" name="content" rows="8" required></textarea><br><br>
+
+        <label for="user_id">ID автора:</label><br>
+        <input type="number" id="user_id" name="user_id" required><br><br>
+
+        <label for="tags">ID тегов (через запятую):</label><br>
+        <input type="text" id="tags" name="tags"><br><br>
+
+        <button type="submit">Создать</button>
+    </form>
+</main>
+
+<footer>
+    <p><a href="/">⬅ На главную</a></p>
+</footer>
+</body>
+</html>

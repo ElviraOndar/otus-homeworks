@@ -1,160 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <title>Новости о "Реале"</title>
-    <link rel="stylesheet" href="css/style-main.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style-main.css') }}">
 </head>
-
 <body>
+<header>
+    <h1>Главные новости футбольного клуба "Реал Мадрид"</h1>
+    <p>Актуальные события из стана "Королевского клуба"</p>
+</header>
 
-    <header>
-        <h1>Главные новости футбольного клуба "Реал Мадрид"</h1>
-        <p>Актуальные события из стана "Королевского клуба"</p>
-
-        <nav>
-            <ul>
-                <li><a href="news.html">Новостные заметки</a></li>
-                <li><a href="interviews.html">Интервью</a></li>
-                <li><a href="rewards.html">Достижения</a></li>
-                <li><a href="appointments.html">Назначения</a></li>
-                <li><a href="anniversaries.html">Памятные даты</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <article class="post">
-            <h3 class="post-title">Первое интервью Дина Хёйсена в качестве футболиста "Реал Мадрид"</h3>
-            <p class="post-meta">
-                Опубликовано 10.06.2025 в 14:30
+<main>
+    {% for post in posts %}
+    <article class="post">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-meta">Опубликовано {{ post.datetime.strftime('%d.%m.%Y %H:%M') }} | Автор: {{ post.user.name }}</p>
+        <div class="post-content">
+            <p>{{ post.content[:300] }}...</p>
+            <p>
+                <a href="/posts/{{ post.id }}">Подробнее</a>
             </p>
-            <div class="post-content">
-                <p>
-                "Это лучший день в моей жизни. Мечта стала реальностью.
-                Я взял 24-й номер, потому что он был свободен. Для меня счастье носить любой номер в этом клубе.
-                Я здесь, чтобы выигрывать титулы. Я хочу выиграть всё. У меня есть амбиции.
-                Несколько игроков «Мадрида» уже написали мне, это хорошая команда с отличными людьми.
-                Не могу дождаться встречи с ними".
-                </p>
-                <p>
-                    <a href="din_interview.html">Подробнее</a>
-                </p>
-            </div>
-            <div class="tags">
-                <a href="">
-                <span class="tag tag-interview">интервью</span>
-                    </a>
-            </div>
-        </article>
+        </div>
+        <div class="tags">
+            {% for tag in post.tags %}
+                <span class="tag tag-{{ tag.name|lower }}">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+    </article>
+    {% endfor %}
+</main>
 
-        <article class="post">
-            <h3 class="post-title">Карло Анчелотти — 66</h3>
-            <p class="post-meta">
-                Опубликовано 09.06.2025 в 08:00
-            </p>
-            <div class="post-content">
-                <p>
-                    Сегодня исполнилось 66 лет одному из величайших тренеров в истории футбола и легенде «Мадрида» —
-                    великому Карло Анчелотти!
-                    Итальянец — самый титулованный тренер в истории «Мадрида»: он завоевал 15 трофеев.
-                </p>
-                <p>
-                    <a href="carlo_anniversary.html">Подробнее</a>
-                </p>
-            </div>
-            <div class="tags">
-                <a href="">
-                <span class="tag tag-anniversary">памятная дата</span>
-                    </a>
-            </div>
-        </article>
-
-        <article class="post">
-            <h3 class="post-title">Лука Модрич стал самым возрастным автором гола в квалификации на Евро</h3>
-            <p class="post-meta">
-                Опубликовано 08.06.2025 в 23:55
-            </p>
-            <div class="post-content">
-                <p>
-                    Футболист "Реал Мадрид" Лука Модрич (39 лет и 9 месяцев) стал самым возрастным автором гола
-                    в истории отборочных матчей чемпионата мира среди сборных Европы.
-                    Предыдущий рекорд принадлежал Эдину Джеко (39 лет и 2 месяца).
-                </p>
-                <p>
-                    <a href="modric_achievement.html">Подробнее</a>
-                </p>
-            </div>
-            <div class="tags">
-                <a href="">
-                <span class="tag tag-news">новости</span>
-                    </a>
-                <a href="">
-                <span class="tag tag-reward">достижение</span>
-                    </a>
-            </div>
-        </article>
-
-        <article class="post">
-            <h3 class="post-title">Хаби Алонсо — новый главный тренер "Реал Мадрид"</h3>
-            <p class="post-meta">
-                Опубликовано 25.05.2025 в 13:00
-            </p>
-            <div class="post-content">
-                <p>
-                    Хаби Алонсо подпишет контракт с «Мадридом» сроком до 2028 года.
-                </p>
-                <p>
-                    <a href="xabi_appointment.html">Подробнее</a>
-                </p>
-            </div>
-            <div class="tags">
-                <a href="">
-                <span class="tag tag-appointment">назначение</span>
-                    </a>
-                <a href="">
-                <span class="tag tag-news">новости</span>
-                    </a>
-            </div>
-        </article>
-
-        <article class="post">
-            <h3 class="post-title">Килиан Мбаппе — обладатель Золотой Бутсы сезона 2024/25!</h3>
-            <p class="post-meta">
-                Опубликовано 24.05.2025 в 19:50
-            </p>
-            <div class="post-content">
-                <p>
-                    Нападающий "Реала" в 7-й раз стал лучшим бомбардиром чемпионата — 6 раз в Лиге 1 и в первый раз в Ла Лиге.
-                    Мбаппе становился лучшим бомбардиром Лиги Чемпионов 2023/24 и Чемпионата Мира-2022.
-                </p>
-                 <p>
-                    <a href="mbappe_achievement.html">Подробнее</a>
-                </p>
-            </div>
-            <div class="tags">
-                <a href="">
-                <span class="tag tag-reward">достижение</span>
-                    </a>
-                <a href="">
-                <span class="tag tag-news">новости</span>
-                    </a>
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <p>
-            2025. Новостной блог о футбольном клубе "Реал Мадрид". Все права защищены.
-        </p>
-        <p>
-            <a href="contacts.html">Наши контакты</a>
-            </p>
-
-    </footer>
-
+<footer>
+    <p>2025. Новостной блог о футбольном клубе "Реал Мадрид". Все права защищены.</p>
+    <p><a href="/contacts">Наши контакты</a></p>
+</footer>
 </body>
 </html>
-
-
