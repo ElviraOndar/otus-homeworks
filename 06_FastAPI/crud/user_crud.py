@@ -56,9 +56,6 @@ def update_user(db: Session, user_id: int, user_data: UserCreate) -> User | None
     Функция возвращает обновленный ORM-объект пользователя, либо None, если пользователь не найден.
     """
     user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        return None
-
     user.name = user_data.name
     db.commit()
     db.refresh(user)
@@ -73,8 +70,6 @@ def delete_user(db: Session, user_id: int) -> bool:
     Функция возвращает True, если удаление прошло успешно, иначе - False.
     """
     user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        return False
 
     db.delete(user)
     db.commit()

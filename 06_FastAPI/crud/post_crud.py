@@ -28,14 +28,6 @@ def create_post(db: Session, post: PostCreate):
 
     # Находим теги по id
     tags = db.query(Tag).filter(Tag.id.in_(post.tags)).all()
-
-    # Проверяем, что все теги существуют
-    if len(tags) != len(post.tags):
-        raise HTTPException(
-            status_code=400,
-            detail="Один или несколько тегов не существуют"
-        )
-
     new_post.tags = tags
 
     db.add(new_post)
@@ -106,14 +98,6 @@ def update_post(db: Session, post_id: int, post_data: PostCreate):
     post.user_id = post_data.user_id
 
     tags = db.query(Tag).filter(Tag.id.in_(post_data.tags)).all()
-
-    # Проверяем, что все теги существуют
-    if len(tags) != len(post.tags):
-        raise HTTPException(
-            status_code=400,
-            detail="Один или несколько тегов не существуют"
-        )
-
     post.tags = tags
 
     db.commit()

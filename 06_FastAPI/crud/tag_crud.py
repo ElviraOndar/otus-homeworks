@@ -48,8 +48,6 @@ def update_tag(db: Session, tag_id: int, new_tag: TagCreate) -> Tag | None:
     Функция возвращает обновленный ORM-объект тега или None, если тег не был найден.
     """
     tag = db.query(Tag).filter(Tag.id == tag_id).first()
-    if tag is None:
-        return None
     tag.name = new_tag.name
     db.commit()
     db.refresh(tag)
@@ -63,8 +61,6 @@ def delete_tag(db: Session, tag_id: int) -> bool:
     Функция возвращает True, если удаление прошло успешно, False - если тег не был найден.
     """
     tag = db.query(Tag).filter(Tag.id == tag_id).first()
-    if tag is None:
-        return False
     db.delete(tag)
     db.commit()
     return True

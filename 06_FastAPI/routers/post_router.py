@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from db.session import get_db
 from schemas.post_schema import PostCreate, PostRead
@@ -6,6 +8,8 @@ from crud.post_crud import create_post, get_post, get_posts, update_post, delete
 from models.tag import Tag
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
+
+templates = Jinja2Templates(directory="templates")
 
 
 @router.post("/", response_model=PostRead)
@@ -32,33 +36,25 @@ def create_post_endpoint(post: PostCreate, db: Session = Depends(get_db)):
     return create_post(db=db, post=post)
 
 
-@router.get("/{post_id}", response_model=PostRead)
-def get_post_endpoint(post_id: int, db: Session = Depends(get_db)):
+# Получить html-страницу с постом по его ID
+@router.get("/{post_id}", response_class=HTMLResponse)
+def view_post(post_id: int, request: Request, db: Session = Depends(get_db)):
     """
-    Эта функция обрабатывает GET-запрос: получить один пост по его ID.
-
-    1) Ищет пост в базе данных с помощью функции get_post из CRUD.
-    2) Если пост не найден, вызывает 404.
-    3) Возвращает найденный пост в виде Pydantic-схемы PostRead.
+    Возвращает HTML-страницу с постом, используя шаблон post_detail.html
     """
-    db_post = get_post(db=db, post_id=post_id)
-    if not db_post:
-        raise HTTPException(status_code=404, detail="Пост не найден")
-    return db_post
+    post = get_post(db, post_id)
+    if not post:
+        return RedirectResponse("/")
+    return templates.TemplateResponse("post_detail.html", {"request": request, "post": post})
 
 
-@router.get("/", response_model=list[PostRead])
-def get_posts_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+@router.get("/", response_class=HTMLResponse)
+def get_posts_endpoint(request: Request, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """
-    Эта функция обрабатывает GET-запрос: получить список постов.
-
-    - skip: сколько записей пропустить (по умолчанию 0).
-    - limit: максимальное количество записей (по умолчанию 100).
-
-    Она вызывает из CRUD функцию get_posts.
-
+    Эта функция возвращает HTML-страницу со списком постов
     """
-    return get_posts(db=db, skip=skip, limit=limit)
+    posts = get_posts(db=db, skip=skip, limit=limit)
+    return templates.TemplateResponse("index.html", {"request": request, "posts": posts})
 
 
 @router.put("/{post_id}", response_model=PostRead)
@@ -71,10 +67,9 @@ def update_post_endpoint(post_id: int, post: PostCreate, db: Session = Depends(g
     3) Если пост не найден, вызывает 404.
     4) Возвращает обновленный пост в виде Pydantic-модели PostRead, чтобы отправить клиенту.
     """
-    requested_tag_ids = set(post.tags)
-    db_tags = db.query(Tag).filter(Tag.id.in_(requested_tag_ids)).all()
+    db_tags = db.query(Tag).filter(Tag.id.in_(post.tags)).all()
 
-    if len(db_tags) != len(requested_tag_ids):
+    if len(db_tags) != len(post.tags):
         raise HTTPException(status_code=400, detail="Один или несколько тегов не существуют")
 
     updated_post = update_post(db=db, post_id=post_id, post_data=post)
@@ -97,5 +92,23 @@ def delete_post_endpoint(post_id: int, db: Session = Depends(get_db)):
     if not success:
         raise HTTPException(status_code=404, detail="Пост не найден")
     return {"message": "Пост успешно удален"}
+
+
+
+
+#
+# @router.get("/{post_id}", response_model=PostRead)
+# def get_post_endpoint(post_id: int, db: Session = Depends(get_db)):
+#     """
+#     Эта функция обрабатывает GET-запрос: получить один пост по его ID.
+#
+#     1) Ищет пост в базе данных с помощью функции get_post из CRUD.
+#     2) Если пост не найден, вызывает 404.
+#     3) Возвращает найденный пост в виде Pydantic-схемы PostRead.
+#     """
+#     db_post = get_post(db=db, post_id=post_id)
+#     if not db_post:
+#         raise HTTPException(status_code=404, detail="Пост не найден")
+#     return db_post
 
 
