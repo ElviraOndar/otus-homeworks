@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Query
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -6,6 +6,7 @@ from db.session import get_db
 from schemas.post_schema import PostCreate, PostRead
 from crud.post_crud import create_post, get_post, get_posts, update_post, delete_post
 from models.tag import Tag
+from typing import List
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
 
@@ -57,6 +58,33 @@ def get_posts_endpoint(request: Request, skip: int = 0, limit: int = 100, db: Se
     return templates.TemplateResponse("index.html", {"request": request, "posts": posts})
 
 
+@router.get("/info/all", response_model=List[PostRead])
+def get_posts_info_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """
+    Эта функция обрабатывает GET-запрос: получить список постов.
+
+    1) Принимает параметры skip и limit для пагинации.
+    2) Достает посты из базы с помощью get_posts.
+    3) Возвращает список постов в формате Pydantic-схемы PostRead.
+    """
+    posts = get_posts(db=db, skip=skip, limit=limit)
+    return posts
+
+@router.get("/{post_id}/info", response_model=PostRead)
+def get_post_info_endpoint(post_id: int, db: Session = Depends(get_db)):
+    """
+    Эта функция обрабатывает GET-запрос: получить один пост по его ID.
+
+    1) Ищет пост в базе данных с помощью функции get_post из CRUD.
+    2) Если пост не найден, вызывает 404.
+    3) Возвращает найденный пост в виде Pydantic-схемы PostRead.
+    """
+    db_post = get_post(db=db, post_id=post_id)
+    if not db_post:
+        raise HTTPException(status_code=404, detail="Пост не найден")
+    return db_post
+
+
 @router.put("/{post_id}", response_model=PostRead)
 def update_post_endpoint(post_id: int, post: PostCreate, db: Session = Depends(get_db)):
     """
@@ -92,23 +120,5 @@ def delete_post_endpoint(post_id: int, db: Session = Depends(get_db)):
     if not success:
         raise HTTPException(status_code=404, detail="Пост не найден")
     return {"message": "Пост успешно удален"}
-
-
-
-
-#
-# @router.get("/{post_id}", response_model=PostRead)
-# def get_post_endpoint(post_id: int, db: Session = Depends(get_db)):
-#     """
-#     Эта функция обрабатывает GET-запрос: получить один пост по его ID.
-#
-#     1) Ищет пост в базе данных с помощью функции get_post из CRUD.
-#     2) Если пост не найден, вызывает 404.
-#     3) Возвращает найденный пост в виде Pydantic-схемы PostRead.
-#     """
-#     db_post = get_post(db=db, post_id=post_id)
-#     if not db_post:
-#         raise HTTPException(status_code=404, detail="Пост не найден")
-#     return db_post
 
 

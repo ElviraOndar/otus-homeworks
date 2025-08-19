@@ -36,6 +36,15 @@ def home(request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse("index.html", {"request": request, "posts": posts})
 
 
+# Эндпоинт с контактами
+@app.get("/contacts", response_class=HTMLResponse)
+def get_contacts(request: Request):
+    """
+    Возвращает HTML-страницу с контактами
+    """
+    return templates.TemplateResponse("contacts.html", {"request": request})
+
+
 # запуск
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000)
