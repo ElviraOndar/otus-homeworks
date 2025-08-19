@@ -10,9 +10,9 @@ class Post(Base):
     title = Column(String, nullable=False, unique=True)
     content = Column(Text, nullable=False)
     datetime = Column(DateTime, nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
     # Связь с пользователем, написавшим пост
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     user = relationship('User', back_populates='posts')
 
     # Связь поста с тегами
