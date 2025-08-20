@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# IDE и редакторы
+.idea/
+
+# Виртуальные окружения
+.venv/
+venv/
+env/
+
+# Логи и кэш
+*.log
+*.out
+*.err
+.cache/
+.mypy_cache/
+pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+
+# Секреты и настройки
+.env
+/git/
+
+

@@ -49,6 +49,7 @@ def view_post(post_id: int, request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse("post_detail.html", {"request": request, "post": post})
 
 
+# Получить html-страницу со всеми постами (главную)
 @router.get("/", response_class=HTMLResponse)
 def get_posts_endpoint(request: Request, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """
