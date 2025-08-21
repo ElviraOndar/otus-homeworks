@@ -8,64 +8,61 @@ from datetime import datetime
 session = SessionLocal()
 
 # Создаем двух пользователей
-user1 = User(name='Carlo Ancelotti')
-user2 = User(name='Jose Mourinho')
+user1 = User(name='Карло Анчелотти')
+user2 = User(name='Жозе Моуринью')
 
 # Создаем три тега
-tag_interview = Tag(name='interview')
-tag_appointment = Tag(name='appointment')
-tag_reward = Tag(name='reward')
-tag_news = Tag(name='news')
-tag_anniversary = Tag(name='anniversary')
+tag_interview = Tag(name='интервью')
+tag_appointment = Tag(name='назначение')
+tag_reward = Tag(name='достижение')
+tag_news = Tag(name='новость')
+tag_anniversary = Tag(name='праздничная дата')
+
+session.add_all([user1, user2, tag_interview, tag_appointment, tag_reward, tag_news, tag_anniversary])
+session.commit()
 
 # Создаём пять постов от двух пользователей с использованием тегов
 post1 = Post(
-    title="First Xabi Alonso's interview as a head coach of Real Madrid",
-    content="I will try to make sure that together we build a team that we are proud of and that generates excitement",
-    DateTime=datetime.now(),
+    title="Первое интервью Хаби Алонсо в роли главного тренера Реала",
+    content="""Сегодня Хаби Алонсо впервые выступил перед прессой как главный тренер мадридского «Реала». В своем обращении он отметил, что чувствует огромную ответственность за то, чтобы клуб продолжил оставаться на вершине европейского футбола. Алонсо подчеркнул, что намерен построить команду, которая будет не только побеждать, но и радовать болельщиков яркой игрой. Он пообещал, что вместе со своим тренерским штабом приложит все усилия для развития молодых игроков и создания атмосферы доверия внутри коллектива.""",
+    datetime=datetime.now(),
 )
 post1.user = user1
 post1.tags = [tag_interview, tag_appointment]
 
 post2 = Post(
-    title="Alvaro Arbeloa becomes a head coach of Real Madrid Castilla",
-    content="Alvaro Arbeloa will be Castilla's manager starting in the 2025-2026 season",
-    DateTime=datetime.now(),
+    title="Альваро Арбелоа возглавил Реал Мадрид Кастилью",
+    content="""Руководство мадридского «Реала» официально подтвердило назначение Альваро Арбелоа на пост главного тренера команды «Кастилья». Бывший защитник «сливочных» хорошо знаком с клубной философией и уже несколько лет успешно работает с молодежными командами академии. Теперь ему предстоит вывести резервный состав на новый уровень, помочь молодым игрокам раскрыться и подготовить их к выступлениям за главную команду. Арбелоа отметил, что для него это не только вызов, но и огромная честь — воспитывать новое поколение футболистов «Реала».""",
+    datetime=datetime.now(),
 )
 post2.user = user2
 post2.tags = [tag_news, tag_appointment]
 
 post3 = Post(
-    title="Mbappe named Real Madrid's Player of the Season",
-    content="""Kylian Mbappé received the Best Player Award 
-    from Real Madrid for the 2024/25 season. The forward was honored 
-    after a spectacular first season at the club, with 43 goals in 56 matches.""",
-    DateTime=datetime.now(),
+    title="Килиан Мбаппе признан лучшим игроком сезона в Реале",
+    content="""Французский нападающий Килиан Мбаппе был удостоен звания лучшего игрока мадридского «Реала» по итогам сезона 2024/25. За первый год в клубе он забил 43 гола в 56 матчах, став ключевой фигурой в атаке команды. Болельщики и эксперты отметили его невероятную скорость, умение открываться и решать судьбу самых сложных встреч. Особенно яркими стали его выступления в Лиге чемпионов, где Мбаппе не раз приносил команде победу своими точными ударами. Сам футболист поблагодарил партнеров и фанатов, подчеркнув, что этот успех стал возможен благодаря поддержке всей команды.""",
+    datetime=datetime.now(),
 )
 post3.user = user1
 post3.tags = [tag_news, tag_reward]
 
 post4 = Post(
-    title="Third anniversary of the 14th Champions League title",
-    content="""On May 28, 2022, Real Madrid defeated Liverpool 0-1 in Paris and won 
-    a historic Champions League title with unforgettable comebacks at the Bernabéu.""",
-    DateTime=datetime.now(),
+    title="Третья годовщина победы Реала в 14-м розыгрыше Лиги чемпионов",
+    content="""28 мая исполнилось три года с момента исторической победы мадридского «Реала» в финале Лиги чемпионов над «Ливерпулем». Тогда, в Париже, единственный гол в матче забил Винисиус Жуниор, а Тибо Куртуа провел выдающийся поединок, отразив множество опасных ударов. Этот триумф стал символом характера и несгибаемости команды, которая по пути к финалу совершила ряд невероятных камбэков против «ПСЖ», «Челси» и «Манчестер Сити». Годовщина вновь напомнила болельщикам о величии клуба и его умении добиваться побед даже в самых сложных обстоятельствах.""",
+    datetime=datetime.now(),
 )
 post4.user = user1
 post4.tags = [tag_anniversary]
 
 post5 = Post(
-    title="Carvajal received the Gold Medal of the Community of Madrid",
-    content="""Daniel Carvajal was awarded the Gold Medal of the Community 
-    of Madrid at an event attended by President Florentino Pérez.""",
-    DateTime=datetime.now(),
+    title="Карвахаль награжден золотой медалью сообщества Мадрид",
+    content="""Защитник «Реала» Дани Карвахаль получил престижную награду — золотую медаль сообщества Мадрид. Церемония награждения прошла в торжественной обстановке и собрала множество известных гостей, в том числе президента клуба Флорентино Переса. Эта награда вручается выдающимся спортсменам, которые прославляют регион своими достижениями и личным примером. Карвахаль отметил, что для него это особая честь — быть признанным не только как профессиональный футболист, но и как человек, вносящий вклад в развитие общества. Болельщики тепло поздравили своего любимца, а руководство клуба подчеркнуло, что игрок является настоящим символом мадридизма.""",
+    datetime=datetime.now(),
 )
 post5.user = user2
 post5.tags = [tag_news, tag_reward]
 
-session.add_all([post1, post2, post3, post4, post5, user1, user2, tag_interview,
-                 tag_appointment, tag_reward, tag_news, tag_anniversary])
-
+session.add_all([post1, post2, post3, post4, post5])
 session.commit()
 
 session.close()

@@ -10,5 +10,5 @@ COPY . .
 
 EXPOSE 8000
 
-# Запуск uvicorn (можно и через docker-compose command)
+# Запуск uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
